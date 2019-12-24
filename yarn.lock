@@ -1539,7 +1539,7 @@
   resolved "https://registry.npm.taobao.org/@types/unist/download/@types/unist-2.0.3.tgz#9c088679876f374eb5983f150d4787aa6fb32d7e"
   integrity sha1-nAiGeYdvN061mD8VDUeHqm+zLX4=
 
-"@types/vfile-message@*":
+"@types/vfile-message@*", "@types/vfile-message@^2.0.0":
   version "2.0.0"
   resolved "https://registry.npm.taobao.org/@types/vfile-message/download/@types/vfile-message-2.0.0.tgz#690e46af0fdfc1f9faae00cd049cc888957927d5"
   integrity sha1-aQ5Grw/fwfn6rgDNBJzIiJV5J9U=

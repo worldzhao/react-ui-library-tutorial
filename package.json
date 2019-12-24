@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "typings": "types/index.d.ts",
   "scripts": {
     "dev": "docz dev",
     "start": "npm run dev",
     "build:doc": "rimraf doc-site && docz build",
     "preview:doc": "docz serve",
+    "build:types": "tsc --emitDeclarationOnly",
     "commit": "git-cz",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -29,6 +31,7 @@
   "devDependencies": {
     "@commitlint/cli": "^8.2.0",
     "@commitlint/config-conventional": "^8.2.0",
+    "@types/vfile-message": "^2.0.0",
     "@umijs/fabric": "^1.2.12",
     "antd": "^3.26.3",
     "babel-plugin-import": "^1.13.0",

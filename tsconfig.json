@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
-    "rootDir": "components",
-    "baseUrl": "components",
+    "allowJs": false,
     "target": "esnext",
     "module": "commonjs",
     "jsx": "react",
@@ -12,5 +11,6 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true
   },
-  "exclude": ["components/**/demo", "doc-comps"]
+  "include": ["components"],
+  "exclude": ["components/**/demo"]
 }
