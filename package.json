@@ -2,14 +2,16 @@
   "name": "react-ui-library-tutorial",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "typings": "types/index.d.ts",
+  "main": "lib/index.js",
   "scripts": {
     "dev": "docz dev",
     "start": "npm run dev",
     "build:doc": "rimraf doc-site && docz build",
     "preview:doc": "docz serve",
+    "clean": "rimraf types lib esm dist",
     "build:types": "tsc --emitDeclarationOnly",
+    "build": "npm run clean && npm run build:types && gulp",
     "commit": "git-cz",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -29,6 +31,13 @@
     "react-dom": ">=16.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.7.7",
+    "@babel/plugin-transform-runtime": "^7.7.6",
+    "@babel/preset-env": "^7.7.7",
+    "@babel/preset-react": "^7.7.4",
+    "@babel/preset-typescript": "^7.7.7",
     "@commitlint/cli": "^8.2.0",
     "@commitlint/config-conventional": "^8.2.0",
     "@types/vfile-message": "^2.0.0",
@@ -40,6 +49,8 @@
     "docz": "^2.2.0",
     "gatsby-plugin-import": "^2.1.5",
     "gatsby-plugin-less": "^3.0.17",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
     "husky": "^3.1.0",
     "less": "^3.10.3",
     "lint-staged": "^9.5.0",
@@ -77,6 +88,7 @@
     }
   },
   "dependencies": {
+    "@babel/runtime-corejs3": "^7.7.7",
     "prop-types": "^15.7.2"
   }
 }

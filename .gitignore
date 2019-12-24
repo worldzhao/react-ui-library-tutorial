@@ -15,7 +15,7 @@
 /build
 /dist
 /lib
-/es
+/esm
 /.docz
 /doc-site
 /types
