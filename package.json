@@ -4,6 +4,7 @@
   "description": "",
   "typings": "types/index.d.ts",
   "main": "lib/index.js",
+  "module": "esm/index.js",
   "scripts": {
     "dev": "docz dev",
     "start": "npm run dev",

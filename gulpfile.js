@@ -11,15 +11,39 @@ const paths = {
   scripts: ['components/**/*.{ts,tsx}', '!components/**/demo/*.{ts,tsx}'],
 };
 
-function compileCJS() {
-  const { dest, scripts } = paths;
+/**
+ * 编译脚本文件
+ * @param {*} babelEnv babel环境变量
+ * @param {*} destDir 目标目录
+ */
+function compileScripts(babelEnv, destDir) {
+  const { scripts } = paths;
+  process.env.BABEL_ENV = babelEnv;
   return gulp
     .src(scripts)
     .pipe(babel()) // 使用gulp-babel处理
-    .pipe(gulp.dest(dest.lib));
+    .pipe(gulp.dest(destDir));
 }
 
-const build = gulp.parallel(compileCJS);
+/**
+ * 编译cjs
+ */
+function compileCJS() {
+  const { dest } = paths;
+  return compileScripts('CJS', dest.lib);
+}
+
+/**
+ * 编译esm
+ */
+function compileESM() {
+  const { dest } = paths;
+  return compileScripts('ESM', dest.esm);
+}
+
+const buildScripts = gulp.series(compileCJS, compileESM);
+
+const build = gulp.parallel(buildScripts);
 
 exports.build = build;
 
