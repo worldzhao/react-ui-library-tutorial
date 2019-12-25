@@ -1,5 +1,8 @@
 const gulp = require('gulp');
 const babel = require('gulp-babel');
+const less = require('gulp-less');
+const autoprefixer = require('gulp-autoprefixer');
+const cssnano = require('gulp-cssnano');
 
 const paths = {
   dest: {
@@ -43,7 +46,30 @@ function compileESM() {
 
 const buildScripts = gulp.series(compileCJS, compileESM);
 
-const build = gulp.parallel(buildScripts);
+/**
+ * 拷贝less文件
+ */
+function copyLess() {
+  return gulp
+    .src(paths.styles)
+    .pipe(gulp.dest(paths.dest.lib))
+    .pipe(gulp.dest(paths.dest.esm));
+}
+
+/**
+ * 生成css文件
+ */
+function less2css() {
+  return gulp
+    .src(paths.styles)
+    .pipe(less()) // 处理less文件
+    .pipe(autoprefixer()) // 根据browserslistrc增加前缀
+    .pipe(cssnano({ zindex: false, reduceIdents: false })) // 压缩
+    .pipe(gulp.dest(paths.dest.lib))
+    .pipe(gulp.dest(paths.dest.esm));
+}
+
+const build = gulp.parallel(buildScripts, copyLess, less2css);
 
 exports.build = build;
 
