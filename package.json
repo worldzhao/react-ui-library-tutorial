@@ -67,6 +67,7 @@
     "react-simple-code-editor": "^0.10.0",
     "react-use": "^13.12.2",
     "rimraf": "^3.0.0",
+    "through2": "^3.0.1",
     "typescript": "^3.7.3"
   },
   "lint-staged": {
