@@ -1,7 +1,7 @@
 {
-  "name": "react-ui-library-tutorial",
+  "name": "happy-ui",
   "version": "1.0.0",
-  "description": "",
+  "description": "A React UI Library.",
   "typings": "types/index.d.ts",
   "main": "lib/index.js",
   "module": "esm/index.js",
@@ -31,6 +31,12 @@
     "react": ">=16.0.0",
     "react-dom": ">=16.0.0"
   },
+  "sideEffects": [
+    "dist/*",
+    "esm/**/style/*",
+    "lib/**/style/*",
+    "*.less"
+  ],
   "devDependencies": {
     "@babel/core": "^7.7.7",
     "@babel/plugin-proposal-class-properties": "^7.7.4",
