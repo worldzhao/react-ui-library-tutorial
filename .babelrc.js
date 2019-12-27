@@ -1,20 +1,8 @@
 module.exports = {
-  presets: ['@babel/typescript', '@babel/react'],
-  plugins: ['@babel/proposal-class-properties'],
+  presets: ['@babel/env', '@babel/typescript', '@babel/react'],
+  plugins: ['@babel/plugin-transform-runtime', '@babel/proposal-class-properties'],
   env: {
-    CJS: {
-      presets: [['@babel/env']],
-      plugins: [
-        [
-          '@babel/plugin-transform-runtime',
-          {
-            corejs: 3,
-            helpers: true,
-          },
-        ],
-      ],
-    },
-    ESM: {
+    esm: {
       presets: [
         [
           '@babel/env',
@@ -27,8 +15,6 @@ module.exports = {
         [
           '@babel/plugin-transform-runtime',
           {
-            corejs: 3,
-            helpers: true,
             useESModules: true,
           },
         ],

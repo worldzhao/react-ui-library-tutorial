@@ -62,7 +62,7 @@ function compileScripts(babelEnv, destDir) {
  */
 function compileCJS() {
   const { dest } = paths;
-  return compileScripts('CJS', dest.lib);
+  return compileScripts('cjs', dest.lib);
 }
 
 /**
@@ -70,7 +70,7 @@ function compileCJS() {
  */
 function compileESM() {
   const { dest } = paths;
-  return compileScripts('ESM', dest.esm);
+  return compileScripts('esm', dest.esm);
 }
 
 const buildScripts = gulp.series(compileCJS, compileESM);

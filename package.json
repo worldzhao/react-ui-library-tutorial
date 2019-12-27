@@ -99,7 +99,7 @@
     }
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "^7.7.7",
+    "@babel/runtime": "^7.7.7",
     "prop-types": "^15.7.2"
   }
 }
