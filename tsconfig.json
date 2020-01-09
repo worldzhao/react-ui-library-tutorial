@@ -12,5 +12,5 @@
     "esModuleInterop": true
   },
   "include": ["components"],
-  "exclude": ["components/**/demo"]
+  "exclude": ["components/**/demo", "components/**/__tests__"]
 }

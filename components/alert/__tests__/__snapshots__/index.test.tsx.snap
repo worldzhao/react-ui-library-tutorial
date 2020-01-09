@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Alert /> should render alert with type 1`] = `
+<div
+  class="happy-alert"
+  style="background: rgb(83, 82, 237);"
+>
+  info
+</div>
+`;
+
+exports[`<Alert /> should render alert with type 2`] = `
+<div
+  class="happy-alert"
+  style="background: rgb(255, 165, 2);"
+>
+  warning
+</div>
+`;
+
+exports[`<Alert /> should render alert with type 3`] = `
+<div
+  class="happy-alert"
+  style="background: rgb(46, 213, 115);"
+>
+  positive
+</div>
+`;
+
+exports[`<Alert /> should render alert with type 4`] = `
+<div
+  class="happy-alert"
+  style="background: rgb(255, 71, 87);"
+>
+  negative
+</div>
+`;
+
+exports[`<Alert /> should render default 1`] = `
+<div>
+  <div
+    class="happy-alert"
+    style="background: rgb(83, 82, 237);"
+  >
+    default
+  </div>
+</div>
+`;
