@@ -8,7 +8,7 @@ interface State {}
 class {{compNameEN}} extends Component<Props, State> {
   static propTypes = {};
 
-  static defaultProps: Partial<Props> = {};
+  static defaultProps = {};
 
   constructor(props: Props) {
     super(props);
