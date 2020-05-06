@@ -1,16 +1,22 @@
 {
   "compilerOptions": {
-    "allowJs": false,
+    "baseUrl": "./",
+    "paths": {
+      "happy-ui": ["components/index.ts"],
+      "happy-ui/esm/*": ["components/*"],
+      "happy-ui/lib/*": ["components/*"]
+    },
     "target": "esnext",
     "module": "commonjs",
     "jsx": "react",
     "declaration": true,
-    "outDir": "types",
+    "declarationDir": "lib",
     "strict": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "resolveJsonModule": true
   },
-  "include": ["components"],
-  "exclude": ["components/**/demo", "components/**/__tests__"]
+  "include": ["components", "global.d.ts"],
+  "exclude": ["types", "node_modules", "lib", "esm"]
 }
