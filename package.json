@@ -5,6 +5,12 @@
   "typings": "types/index.d.ts",
   "main": "lib/index.js",
   "module": "esm/index.js",
+  "sideEffects": [
+    "dist/*",
+    "esm/**/style/*",
+    "lib/**/style/*",
+    "*.less"
+  ],
   "scripts": {
     "dev": "docz dev",
     "start": "npm run dev",
@@ -13,6 +19,7 @@
     "clean": "rimraf types lib esm dist",
     "build:types": "tsc -p tsconfig.build.json",
     "build": "npm run clean && npm run build:types && gulp",
+    "release": "ts-node ./scripts/release.ts",
     "commit": "git-cz",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -33,15 +40,9 @@
   },
   "homepage": "https://github.com/worldzhao/react-ui-library-tutorial#readme",
   "peerDependencies": {
-    "react": ">=16.0.0",
-    "react-dom": ">=16.0.0"
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
   },
-  "sideEffects": [
-    "dist/*",
-    "esm/**/style/*",
-    "lib/**/style/*",
-    "*.less"
-  ],
   "devDependencies": {
     "@babel/core": "^7.7.7",
     "@babel/plugin-proposal-class-properties": "^7.7.4",
@@ -62,7 +63,7 @@
     "chalk": "^3.0.0",
     "commitizen": "^4.0.3",
     "cz-conventional-changelog": "^3.0.2",
-    "docz": "^2.2.0",
+    "docz": "^2.3.2-alpha.0",
     "gatsby-plugin-import": "^2.1.5",
     "gatsby-plugin-less": "^3.0.17",
     "gatsby-plugin-styled-components": "^3.3.0",
@@ -89,10 +90,12 @@
     "react-tooltip": "^4.2.5",
     "react-use": "^13.12.2",
     "rimraf": "^3.0.0",
+    "semver": "^7.3.2",
     "snapshot-diff": "^0.6.1",
     "styled-components": "^5.1.0",
     "through2": "^3.0.1",
     "ts-jest": "^24.2.0",
+    "ts-node": "^8.10.1",
     "typescript": "^3.7.3"
   },
   "lint-staged": {
