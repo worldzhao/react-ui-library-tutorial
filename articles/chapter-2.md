@@ -130,7 +130,7 @@ import React from 'react';
 import Alert from '../alert';
 import '../style';
 
-export default () => <Alert kind='warning'></Alert>;
+export default () => <Alert kind="warning"></Alert>;
 ```
 
 **components/alert/index.mdx**
@@ -170,15 +170,16 @@ export default () => <Alert kind='warning'></Alert>;
 安装依赖：
 
 ```
-yarn add react-use antd react-simple-code-editor prismjs react-copy-to-clipboard raw-loader --dev
+yarn add react-use react-tooltip react-feather react-simple-code-editor prismjs react-copy-to-clipboard raw-loader styled-components --dev
 ```
 
 - [react-use](https://github.com/streamich/react-use) - 2020 年了，当然要用`hooks`
-- [antd](https://ant.design/) - 使用一些辅助组件
 - [react-simple-code-editor](https://github.com/satya164/react-simple-code-editor) - 代码展示区域
 - [prismjs](https://github.com/PrismJS/prism) - 代码高亮
 - [raw-loader](https://github.com/webpack-contrib/raw-loader) - 将源码转成字符串
 - [react-copy-to-clipboard](https://github.com/nkbt/react-copy-to-clipboard) - 让用户爸爸们能够 copy demo 代码
+- react-tooltip/react-feather 辅助组件
+- styled-components 方便在文档示例中让用户看到样式，也用作文档组件的样式处理
 
 > 这些依赖都是服务于文档站点应用，和组件库自身毫无关联。
 
@@ -192,7 +193,7 @@ yarn add react-use antd react-simple-code-editor prismjs react-copy-to-clipboard
 
 ```
 ├── happy-box
-│   ├── index.less
+│   ├── style.ts
 │   └── index.tsx
 └── index.ts
 ```
@@ -203,63 +204,65 @@ yarn add react-use antd react-simple-code-editor prismjs react-copy-to-clipboard
 import React from 'react';
 import Editor from 'react-simple-code-editor';
 import CopyToClipboard from 'react-copy-to-clipboard';
-import useToggle from 'react-use/esm/useToggle';
-import { Divider, Typography, Icon, Tooltip, message } from 'antd';
+import { useToggle } from 'react-use';
+import ReactTooltip from 'react-tooltip';
+import IconCopy from 'react-feather/dist/icons/clipboard';
+import IconCode from 'react-feather/dist/icons/code';
 import { highlight, languages } from 'prismjs/components/prism-core';
+import { StyledContainer, StyledIconWrapper } from './style';
 
 import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-markup';
-import './index.less';
 
 require('prismjs/components/prism-jsx');
 
-const { Text } = Typography;
 interface Props {
   code: string;
   title?: React.ReactNode;
   desc?: React.ReactNode;
 }
 
-const HappyBox: React.FC<Props> = ({ code, title, desc, children }) => {
+export const HappyBox: React.FC<Props> = ({ code, title, desc, children }) => {
   const [isEditVisible, toggleEditVisible] = useToggle(false);
 
   return (
-    <div className='code-box'>
-      <section className='code-box-demo'> {children}</section>
-      <section className='code-box-meta'>
-        <Divider orientation='left'>{title || '示例'}</Divider>
-        <div className='code-box-description'>
-          <Text>{desc || '暂无描述'}</Text>
+    <StyledContainer>
+      <section className="code-box-demo"> {children}</section>
+      <section className="code-box-meta">
+        <div className="text-divider">
+          <span>{title || '示例'}</span>
         </div>
-        <Divider dashed></Divider>
-        <div className='code-box-action'>
-          <Tooltip placement='top' title={'复制代码'}>
-            <CopyToClipboard text={code} onCopy={() => message.success('复制成功')}>
-              <Icon type='copy' />
-            </CopyToClipboard>
-          </Tooltip>
-          <Tooltip placement='top' title={isEditVisible ? '收起代码' : '显示代码'}>
-            <Icon type='code' onClick={toggleEditVisible} />
-          </Tooltip>
+        <div className="code-box-description">
+          <p>{desc || '暂无描述'}</p>
+        </div>
+        <div className="divider" />
+        <div className="code-box-action">
+          <CopyToClipboard text={code} onCopy={() => alert('复制成功')}>
+            <IconCopy data-place="top" data-tip="复制代码" />
+          </CopyToClipboard>
+
+          <StyledIconWrapper onClick={toggleEditVisible}>
+            <IconCode data-place="top" data-tip={isEditVisible ? '收起代码' : '显示代码'} />
+          </StyledIconWrapper>
         </div>
       </section>
       {renderEditor()}
-    </div>
+      <ReactTooltip />
+    </StyledContainer>
   );
 
-  /* 代码展示区域 */
   function renderEditor() {
     if (!isEditVisible) return null;
     return (
-      <div className='container_editor_area'>
+      <div className="container_editor_area">
         <Editor
           readOnly
           value={code}
           onValueChange={() => {}}
           highlight={code => highlight(code, languages.jsx)}
           padding={10}
-          className='container__editor'
+          className="container__editor"
           style={{
             fontFamily: '"Fira code", "Fira Mono", monospace',
             fontSize: 14,
@@ -275,8 +278,7 @@ export default HappyBox;
 
 ### 相关配置变更
 
-- 增加 `alias`别名，源码展示相对路径不够友好；
-- antd 按需引入，即使是站点应用。
+- 增加 `alias`别名，源码展示相对路径不够友好，让用户直接拷贝才够省心
 
 新建`gatsby-node.js`，写入以下内容以开启`alias`：
 
@@ -289,58 +291,66 @@ exports.onCreateWebpackConfig = args => {
       modules: [path.resolve(__dirname, '../src'), 'node_modules'],
       alias: {
         'happy-ui/lib': path.resolve(__dirname, '../components/'),
+        'happy-ui/esm': path.resolve(__dirname, '../components/'),
+        'happy-ui': path.resolve(__dirname, '../components/'),
       },
     },
   });
 };
 ```
 
-`antd` 按需引入，安装依赖，并配置`gatsby-config.js`：
-
-```bash
-yarn add babel-plugin-import gatsby-plugin-import --dev
-```
-
-**gatsby-config.js**
-
-```js
-module.exports = {
-  plugins: [
-    'gatsby-theme-docz',
-    'gatsby-plugin-less',
-    {
-      resolve: 'gatsby-plugin-import',
-      options: {
-        libraryName: 'antd',
-        style: 'css',
-      },
-    },
-  ],
-};
-```
-
-`tsconfig.json` 忽略`demo`，避免组件库打包生成`types`时包含其中：
+`tsconfig.json` 打包时需要忽略`demo`，避免组件库打包生成`types`时包含其中：
 
 **tsconfig.json**
 
 ```diff
 {
   "compilerOptions": {
-    "allowJs": false,
+    "baseUrl": "./",
++   "paths": {
++     "happy-ui": ["components/index.ts"],
++     "happy-ui/esm/*": ["components/*"],
++     "happy-ui/lib/*": ["components/*"]
++    },
     "target": "esnext",
     "module": "commonjs",
     "jsx": "react",
     "declaration": true,
-    "outDir": "types",
+    "declarationDir": "lib",
     "strict": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "resolveJsonModule": true
   },
-  "include": ["components"],
-+ "exclude": ["components/**/demo"]
+  "include": ["components", "global.d.ts"],
+- "exclude": ["node_modules"]
++ "exclude": ["node_modules",  "**/demo/**"]
+}
+
+```
+
+新的问题出现了，vscode 的 alias 提示还是依赖 tsconfig.json，忽略 demo 文件夹后，demo 内的文件模块类型找不到声明(paths 失效)，所以不能将 demo 在 tsconfig.json 中移除：
+
+```diff
+{
+- "exclude": ["node_modules",  "**/demo/**"]
++ "exclude": ["node_modules"]
 }
 ```
+
+新建一个 tsconfig.build.json 文件：
+
+**tsconfig.build.json**
+
+```json
+{
+  "extends": "./tsconfig.json",
+  "exclude": ["**/demo/**", "node_modules"]
+}
+```
+
+后续使用 tsc 生成类型声明文件指定`tsconfig.build.json`即可。
 
 ### 改造相关文件
 

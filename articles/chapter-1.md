@@ -1,4 +1,3 @@
-
 凡事预则立不预则废。
 
 <!--more -->
@@ -152,18 +151,20 @@ yarn add typescript --dev
 ```json
 {
   "compilerOptions": {
-    "allowJs": false,
+    "baseUrl": "./",
     "target": "esnext",
     "module": "commonjs",
     "jsx": "react",
     "declaration": true,
-    "outDir": "types",
+    "declarationDir": "lib",
     "strict": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "resolveJsonModule": true
   },
-  "include": ["components"]
+  "include": ["components", "global.d.ts"],
+  "exclude": ["node_modules"]
 }
 ```
 

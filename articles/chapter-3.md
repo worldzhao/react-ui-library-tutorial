@@ -32,8 +32,18 @@
 {
   "typings": "types/index.d.ts", // 定义类型入口文件
   "scripts": {
-    "build:types": "tsc --emitDeclarationOnly" // 执行tsc命令 只生成声明文件
+    "build:types": "tsc -p tsconfig.build.json" // 执行tsc命令生成类型声明文件
   }
+}
+```
+
+**tsconfig.build.json**
+
+```json
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "emitDeclarationOnly": true }, // 只生成声明文件
+  "exclude": ["**/__tests__/**", "**/demo/**", "types", "node_modules", "lib", "esm"] // 排除示例测试以及打包好的文件夹
 }
 ```
 
