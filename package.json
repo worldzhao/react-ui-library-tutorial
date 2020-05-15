@@ -63,6 +63,7 @@
     "chalk": "^3.0.0",
     "commitizen": "^4.0.3",
     "cz-conventional-changelog": "^3.0.2",
+    "doctoc": "^1.4.0",
     "docz": "^2.3.2-alpha.0",
     "gatsby-plugin-import": "^2.1.5",
     "gatsby-plugin-less": "^3.0.17",

@@ -1,3 +1,43 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [概览](#%E6%A6%82%E8%A7%88)
+- [准备工作](#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C)
+  - [初始化项目](#%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%B9%E7%9B%AE)
+  - [代码规范](#%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83)
+  - [Commit Lint](#commit-lint)
+  - [TypeScript](#typescript)
+  - [测试](#%E6%B5%8B%E8%AF%95)
+- [开发与调试](#%E5%BC%80%E5%8F%91%E4%B8%8E%E8%B0%83%E8%AF%95)
+  - [安装 docz 以及自定义配置](#%E5%AE%89%E8%A3%85-docz-%E4%BB%A5%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE)
+  - [编写文档](#%E7%BC%96%E5%86%99%E6%96%87%E6%A1%A3)
+  - [优化文档编写](#%E4%BC%98%E5%8C%96%E6%96%87%E6%A1%A3%E7%BC%96%E5%86%99)
+  - [优化代码展示](#%E4%BC%98%E5%8C%96%E4%BB%A3%E7%A0%81%E5%B1%95%E7%A4%BA)
+    - [编写 `<HappyBox />`组件](#%E7%BC%96%E5%86%99-happybox-%E7%BB%84%E4%BB%B6)
+  - [相关配置变更](#%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE%E5%8F%98%E6%9B%B4)
+  - [改造相关文件](#%E6%94%B9%E9%80%A0%E7%9B%B8%E5%85%B3%E6%96%87%E4%BB%B6)
+- [组件库打包](#%E7%BB%84%E4%BB%B6%E5%BA%93%E6%89%93%E5%8C%85)
+  - [导出类型声明文件](#%E5%AF%BC%E5%87%BA%E7%B1%BB%E5%9E%8B%E5%A3%B0%E6%98%8E%E6%96%87%E4%BB%B6)
+  - [导出 Commonjs 模块](#%E5%AF%BC%E5%87%BA-commonjs-%E6%A8%A1%E5%9D%97)
+    - [babel 配置](#babel-%E9%85%8D%E7%BD%AE)
+    - [gulp 配置](#gulp-%E9%85%8D%E7%BD%AE)
+  - [导出 ES module](#%E5%AF%BC%E5%87%BA-es-module)
+  - [处理样式文件](#%E5%A4%84%E7%90%86%E6%A0%B7%E5%BC%8F%E6%96%87%E4%BB%B6)
+    - [拷贝 less 文件](#%E6%8B%B7%E8%B4%9D-less-%E6%96%87%E4%BB%B6)
+    - [生成 css 文件](#%E7%94%9F%E6%88%90-css-%E6%96%87%E4%BB%B6)
+    - [生成 css.js](#%E7%94%9F%E6%88%90-cssjs)
+  - [按需加载](#%E6%8C%89%E9%9C%80%E5%8A%A0%E8%BD%BD)
+  - [生成 umd](#%E7%94%9F%E6%88%90-umd)
+- [组件测试](#%E7%BB%84%E4%BB%B6%E6%B5%8B%E8%AF%95)
+  - [相关配置](#%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE)
+  - [编写测试用例](#%E7%BC%96%E5%86%99%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B)
+- [标准化发布流程](#%E6%A0%87%E5%87%86%E5%8C%96%E5%8F%91%E5%B8%83%E6%B5%81%E7%A8%8B)
+- [初始化组件](#%E5%88%9D%E5%A7%8B%E5%8C%96%E7%BB%84%E4%BB%B6)
+- [结语](#%E7%BB%93%E8%AF%AD)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## 概览
 
 本文包含以下内容：
