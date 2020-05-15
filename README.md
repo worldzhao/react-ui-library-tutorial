@@ -57,6 +57,19 @@
 
 [仓库地址](https://github.com/worldzhao/react-ui-library-tutorial)
 
+效果预览：
+
+```bash
+git clone git@github.com:worldzhao/react-ui-library-tutorial.git
+cd react-ui-library-tutorial
+yarn
+yarn start
+```
+
+按顺序执行完命令后，即可在 localhost:3000 端口看到以下内容：
+
+![preview.png](https://tva1.sinaimg.cn/large/007S8ZIlgy1gete7pnjdkj31j90u00yn.jpg)
+
 ## 准备工作
 
 ### 初始化项目
@@ -751,7 +764,7 @@ exports.onCreateWebpackConfig = args => {
 
 执行`yarn build:types`，可以发现根目录下已经生成了`lib`文件夹（`tsconfig.json`中定义的`declarationDir`字段），目录结构与`components`文件夹保持一致，如下：
 
-**types**
+**lib**
 
 ```
 ├── alert
