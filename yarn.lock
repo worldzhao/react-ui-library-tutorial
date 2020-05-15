@@ -4736,6 +4736,16 @@ cosmiconfig@^6.0.0:
     path-type "^4.0.0"
     yaml "^1.7.2"
 
+cpr@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.npm.taobao.org/cpr/download/cpr-3.0.1.tgz#b9a55038b7cd81a35c17b9761895bd8496aef1e5"
+  integrity sha1-uaVQOLfNgaNcF7l2GJW9hJau8eU=
+  dependencies:
+    graceful-fs "^4.1.5"
+    minimist "^1.2.0"
+    mkdirp "~0.5.1"
+    rimraf "^2.5.4"
+
 create-ecdh@^4.0.0:
   version "4.0.3"
   resolved "https://registry.npm.taobao.org/create-ecdh/download/create-ecdh-4.0.3.tgz#c9111b6f33045c4697f144787f9254cdc77c45ff"
@@ -8109,6 +8119,11 @@ graceful-fs@^4.0.0, graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2
   version "4.2.3"
   resolved "https://registry.npm.taobao.org/graceful-fs/download/graceful-fs-4.2.3.tgz#4a12ff1b60376ef09862c2093edd908328be8423"
   integrity sha1-ShL/G2A3bvCYYsIJPt2Qgyi+hCM=
+
+graceful-fs@^4.1.5:
+  version "4.2.4"
+  resolved "https://registry.npm.taobao.org/graceful-fs/download/graceful-fs-4.2.4.tgz?cache=0&sync_timestamp=1588086876757&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fgraceful-fs%2Fdownload%2Fgraceful-fs-4.2.4.tgz#2256bde14d3632958c465ebc96dc467ca07a29fb"
+  integrity sha1-Ila94U02MpWMRl68ltxGfKB6Kfs=
 
 graphql-compose@^6.3.7:
   version "6.3.7"

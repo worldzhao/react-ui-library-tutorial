@@ -1,6 +1,7 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+**Table of Contents** _generated with [DocToc](https://github.com/thlorenz/doctoc)_
 
 - [概览](#%E6%A6%82%E8%A7%88)
 - [准备工作](#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C)
@@ -727,12 +728,16 @@ exports.onCreateWebpackConfig = args => {
 
 ```json
 {
-  "typings": "types/index.d.ts", // 定义类型入口文件
+  "typings": "lib/index.d.ts", // 定义类型入口文件
   "scripts": {
-    "build:types": "tsc -p tsconfig.build.json" // 执行tsc命令生成类型声明文件
+    "build:types": "tsc -p tsconfig.build.json && cpr lib esm" // 执行tsc命令生成类型声明文件
   }
 }
 ```
+
+> 值得注意的是：此处使用`cpr`(需要手动安装)将`lib`的声明文件拷贝了一份，并将文件夹重命名为`esm`，用于后面存放 ES module 形式的组件。这样做的原因是保证用户手动按需引入组件时依旧可以获取自动提示。
+
+> 最开始的方式是将声明文件单独存放在`types`文件夹，但这样只有通过'happy-ui'引入才可以获取提示，而'happy-ui/esm/xxx'和'happy-ui/lib/xxx'就无法获取提示。
 
 **tsconfig.build.json**
 
@@ -740,11 +745,11 @@ exports.onCreateWebpackConfig = args => {
 {
   "extends": "./tsconfig.json",
   "compilerOptions": { "emitDeclarationOnly": true }, // 只生成声明文件
-  "exclude": ["**/__tests__/**", "**/demo/**", "node_modules", "lib", "esm", "types"] // 排除示例、测试以及打包好的文件夹
+  "exclude": ["**/__tests__/**", "**/demo/**", "node_modules", "lib", "esm"] // 排除示例、测试以及打包好的文件夹
 }
 ```
 
-执行`yarn build:types`，可以发现根目录下已经生成了`lib`文件夹（`tsconfig.json`中定义的`outDir`字段），目录结构与`components`文件夹保持一致，如下：
+执行`yarn build:types`，可以发现根目录下已经生成了`lib`文件夹（`tsconfig.json`中定义的`declarationDir`字段），目录结构与`components`文件夹保持一致，如下：
 
 **types**
 
@@ -900,7 +905,7 @@ exports.default = build;
 + "main": "lib/index.js",
   "scripts": {
     ...
-+   "clean": "rimraf types lib esm dist",
++   "clean": "rimraf lib esm dist",
 +   "build": "npm run clean && npm run build:types && gulp",
     ...
   },
@@ -1038,7 +1043,7 @@ const build = gulp.parallel(buildScripts);
 // ...
 ```
 
-执行`yarn build`，可以发现生成了`types`/`lib`/`esm`三个文件夹，观察`esm`目录，结构同`lib`/`types`一致，js 文件都是以`ES module`模块形式导入导出。
+执行`yarn build`，可以发现生成了`lib`/`esm`三个文件夹，观察`esm`目录，结构同`lib`一致，js 文件都是以`ES module`模块形式导入导出。
 
 **esm/alert/alert.js**
 
