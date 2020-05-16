@@ -1,3 +1,20 @@
+# 可能是最详细的 React 组件库搭建总结
+
+在线预览：[戳我 😘](https://happy-ui.now.sh)
+
+本地预览：
+
+```bash
+git clone git@github.com:worldzhao/react-ui-library-tutorial.git
+cd react-ui-library-tutorial
+yarn
+yarn start
+```
+
+按顺序执行完命令后，即可在 localhost:3000 端口看到以下内容：
+
+![preview.png](https://tva1.sinaimg.cn/large/007S8ZIlgy1gete7pnjdkj31j90u00yn.jpg)
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
@@ -56,19 +73,6 @@
 如果有错误烦请在评论区指正交流，谢谢。
 
 [仓库地址](https://github.com/worldzhao/react-ui-library-tutorial)
-
-效果预览：
-
-```bash
-git clone git@github.com:worldzhao/react-ui-library-tutorial.git
-cd react-ui-library-tutorial
-yarn
-yarn start
-```
-
-按顺序执行完命令后，即可在 localhost:3000 端口看到以下内容：
-
-![preview.png](https://tva1.sinaimg.cn/large/007S8ZIlgy1gete7pnjdkj31j90u00yn.jpg)
 
 ## 准备工作
 
