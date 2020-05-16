@@ -11974,6 +11974,11 @@ now-and-later@^2.0.0:
   dependencies:
     once "^1.3.2"
 
+now@^19.0.1:
+  version "19.0.1"
+  resolved "https://registry.npm.taobao.org/now/download/now-19.0.1.tgz?cache=0&sync_timestamp=1589380180004&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fnow%2Fdownload%2Fnow-19.0.1.tgz#a4575adfed17ea049d9207c145f3ce7f60c818cf"
+  integrity sha1-pFda3+0X6gSdkgfBRfPOf2DIGM8=
+
 npm-run-path@^2.0.0:
   version "2.0.2"
   resolved "https://registry.npm.taobao.org/npm-run-path/download/npm-run-path-2.0.2.tgz#35a9232dfa35d7067b4cb2ddf2357b1871536c5f"

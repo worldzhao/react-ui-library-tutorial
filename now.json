@@ -1,0 +1,12 @@
+{
+  "name": "happy-ui",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@now/static-build",
+      "config": {
+        "distDir": "doc-site"
+      }
+    }
+  ]
+}

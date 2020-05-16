@@ -2,6 +2,7 @@
   "name": "happy-ui",
   "version": "1.0.0",
   "description": "A React UI Library.",
+  "homepage": "https://github.com/worldzhao/react-ui-library-tutorial#readme",
   "typings": "lib/index.d.ts",
   "main": "lib/index.js",
   "module": "esm/index.js",
@@ -11,6 +12,10 @@
     "lib/**/style/*",
     "*.less"
   ],
+  "authors": {
+    "name": "worldzhao",
+    "email": "1007326924@qq.com"
+  },
   "scripts": {
     "dev": "docz dev",
     "start": "npm run dev",
@@ -19,6 +24,8 @@
     "clean": "rimraf lib esm dist",
     "build:types": "tsc -p tsconfig.build.json && cpr lib esm",
     "build": "npm run clean && npm run build:types && gulp",
+    "publish:doc": "now --prod",
+    "now-build": "npm run build:doc",
     "release": "ts-node ./scripts/release.ts",
     "commit": "git-cz",
     "test": "jest",
@@ -38,7 +45,6 @@
   "bugs": {
     "url": "https://github.com/worldzhao/react-ui-library-tutorial/issues"
   },
-  "homepage": "https://github.com/worldzhao/react-ui-library-tutorial#readme",
   "peerDependencies": {
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
@@ -80,6 +86,7 @@
     "jest": "^24.9.0",
     "less": "^3.10.3",
     "lint-staged": "^9.5.0",
+    "now": "^19.0.1",
     "plop": "^2.6.0",
     "prettier": "^1.19.1",
     "prismjs": "^1.17.1",
