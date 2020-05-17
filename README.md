@@ -18,7 +18,6 @@ yarn start
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-**Table of Contents** _generated with [DocToc](https://github.com/thlorenz/doctoc)_
 
 - [概览](#%E6%A6%82%E8%A7%88)
 - [准备工作](#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C)
@@ -33,7 +32,7 @@ yarn start
   - [优化文档编写](#%E4%BC%98%E5%8C%96%E6%96%87%E6%A1%A3%E7%BC%96%E5%86%99)
   - [优化代码展示](#%E4%BC%98%E5%8C%96%E4%BB%A3%E7%A0%81%E5%B1%95%E7%A4%BA)
     - [编写 `<HappyBox />`组件](#%E7%BC%96%E5%86%99-happybox-%E7%BB%84%E4%BB%B6)
-  - [相关配置变更](#%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE%E5%8F%98%E6%9B%B4)
+  - [相关配置](#%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE)
   - [改造相关文件](#%E6%94%B9%E9%80%A0%E7%9B%B8%E5%85%B3%E6%96%87%E4%BB%B6)
 - [组件库打包](#%E7%BB%84%E4%BB%B6%E5%BA%93%E6%89%93%E5%8C%85)
   - [导出类型声明文件](#%E5%AF%BC%E5%87%BA%E7%B1%BB%E5%9E%8B%E5%A3%B0%E6%98%8E%E6%96%87%E4%BB%B6)
@@ -48,7 +47,7 @@ yarn start
   - [按需加载](#%E6%8C%89%E9%9C%80%E5%8A%A0%E8%BD%BD)
   - [生成 umd](#%E7%94%9F%E6%88%90-umd)
 - [组件测试](#%E7%BB%84%E4%BB%B6%E6%B5%8B%E8%AF%95)
-  - [相关配置](#%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE)
+  - [相关配置](#%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE-1)
   - [编写测试用例](#%E7%BC%96%E5%86%99%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B)
 - [标准化发布流程](#%E6%A0%87%E5%87%86%E5%8C%96%E5%8F%91%E5%B8%83%E6%B5%81%E7%A8%8B)
 - [初始化组件](#%E5%88%9D%E5%A7%8B%E5%8C%96%E7%BB%84%E4%BB%B6)
@@ -450,13 +449,9 @@ yarn start # or yarn dev
 
 现在可以在`index.mdx`中愉快地进行文档编写和调试了！
 
-倘若本文到了这里就结束（其实也可以结束了`(_^▽^_)`），那我只是官方文档的翻译复读机罢了，有兴趣的同学可以继续向下看。
-
 ### 优化文档编写
 
-如果`代码演示`部分的`demo`较多（比如基本用法、高级用法以及各种用法等等），在组件复杂的情况下（毕竟`<Alert/>`着实太简单了），会导致文档很长难以维护，你到底是在写文档呢还是在写代码呢？
-
-那就抽离吧。
+若`代码演示`部分的`demo`较多（比如基本用法、高级用法以及各种用法等等），在组件复杂的情况下，会导致文档源文件很长难以维护。那就抽离吧。
 
 在`components/alert/`文件夹下新建`demo`文件夹，存放我们在编写文档时需要引用的 `demo`。
 
@@ -489,11 +484,10 @@ export default () => <Alert kind="warning"></Alert>;
 
 ![文档重构](https://tva1.sinaimg.cn/large/006tNbRwgy1ga1v3li0poj31l80u0wix.jpg)
 
-等等，下面显示的是`<BasicDemo />`，而非`demo`源码。
+等等，代码区域显示的是`<BasicDemo />`，而非`demo`源码。
 
 `<Playground />`组件暂时无法支持上述形式的展示：自定义下方展示的代码，而非`<Playground />`内部的代码。相关讨论如下：
 
-- [Allow to hide the LiveError overlay #907 ](https://github.com/doczjs/docz/pull/907)
 - [Allow to override the playground's editor's code #906 ](https://github.com/doczjs/docz/pull/906)
 
 其实第一条 `PR` 已经解决了问题，但是被关闭了，无奈。
@@ -536,6 +530,9 @@ yarn add react-use react-tooltip react-feather react-simple-code-editor prismjs 
 ```
 
 **components/doc-comps/happy-box/index.tsx**
+
+<details>
+<summary>展开查看代码</summary>
 
 ```jsx
 import React from 'react';
@@ -613,7 +610,212 @@ export const HappyBox: React.FC<Props> = ({ code, title, desc, children }) => {
 export default HappyBox;
 ```
 
-### 相关配置变更
+</details>
+
+**components/doc-comps/happy-box/style.ts**
+
+<details>
+<summary>展开查看代码</summary>
+
+```ts
+import styled from 'styled-components';
+
+export const StyledIconWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+`;
+
+export const StyledContainer = styled.div`
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 16px;
+  border: 1px solid #ebedf0;
+  border-radius: 2px;
+  transition: all 0.2s;
+
+  .text-divider {
+    display: table;
+
+    &::before,
+    &::after {
+      content: '';
+      position: relative;
+      display: table-cell;
+      transform: translateY(50%);
+      content: '';
+      border-top: 1px solid #e8e8e8;
+    }
+
+    &::before {
+      top: 50%;
+      width: 5%;
+    }
+
+    &::after {
+      width: 95%;
+      top: 50%;
+      width: 95%;
+    }
+
+    & > span {
+      display: inline-block;
+      padding: 0 10px;
+      font-weight: 500;
+      font-size: 16px;
+      white-space: nowrap;
+      text-align: center;
+      font-variant: tabular-nums;
+      line-height: 1.5;
+    }
+  }
+
+  .divider {
+    margin: 0;
+    background: none;
+    border: dashed #e8e8e8;
+    border-width: 1px 0 0;
+    display: block;
+    clear: both;
+    width: 100%;
+    min-width: 100%;
+    height: 1px;
+    position: relative;
+    top: -0.06em;
+    box-sizing: border-box;
+    padding: 0;
+    font-size: 14px;
+    font-variant: tabular-nums;
+    line-height: 1.5;
+    list-style: none;
+    font-feature-settings: 'tnum';
+  }
+
+  .code-box-demo {
+    transition: all 0.2s;
+    padding: 42px 24px 50px;
+  }
+
+  .code-box-meta {
+    font-size: 14px;
+    line-height: 2;
+  }
+
+  .code-box .ant-divider {
+    margin: 0;
+  }
+
+  .code-box-description {
+    padding: 18px 24px 12px;
+  }
+
+  .code-box-action {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  .code-box-action .anticon {
+    margin: 0 8px;
+    cursor: pointer;
+  }
+
+  .container_editor_area {
+    border-top: 1px solid rgb(232, 232, 232);
+    padding: 16px;
+  }
+
+  .container__editor {
+    font-variant-ligatures: common-ligatures;
+    border-radius: 3px;
+  }
+
+  .container__editor textarea {
+    outline: 0;
+    background-color: none;
+  }
+
+  .button {
+    display: inline-block;
+    padding: 0 6px;
+    text-decoration: none;
+    background: #000;
+    color: #fff;
+  }
+
+  .button:hover {
+    background: linear-gradient(45deg, #e42b66, #e2433f);
+  }
+
+  /* Syntax highlighting */
+  .token.comment,
+  .token.prolog,
+  .token.doctype,
+  .token.cdata {
+    color: #90a4ae;
+  }
+  .token.punctuation {
+    color: #9e9e9e;
+  }
+  .namespace {
+    opacity: 0.7;
+  }
+  .token.property,
+  .token.tag,
+  .token.boolean,
+  .token.number,
+  .token.constant,
+  .token.symbol,
+  .token.deleted {
+    color: #e91e63;
+  }
+  .token.selector,
+  .token.attr-name,
+  .token.string,
+  .token.char,
+  .token.builtin,
+  .token.inserted {
+    color: #4caf50;
+  }
+  .token.operator,
+  .token.entity,
+  .token.url,
+  .language-css .token.string,
+  .style .token.string {
+    color: #795548;
+  }
+  .token.atrule,
+  .token.attr-value,
+  .token.keyword {
+    color: #3f51b5;
+  }
+  .token.function {
+    color: #f44336;
+  }
+  .token.regex,
+  .token.important,
+  .token.variable {
+    color: #ff9800;
+  }
+  .token.important,
+  .token.bold {
+    font-weight: bold;
+  }
+  .token.italic {
+    font-style: italic;
+  }
+  .token.entity {
+    cursor: help;
+  }
+`;
+
+```
+</details>
+
+### 相关配置
 
 - 增加 `alias`别名，样例源码展示相对路径不够友好，让用户直接拷贝才够省心
 
@@ -730,10 +932,10 @@ exports.onCreateWebpackConfig = args => {
 
 明确以下目标：
 
-1. 导出类型声明文件
-2. 导出 `umd`/`Commonjs module`/`ES module` 等 3 种形式供使用者引入
-3. 支持样式文件 `css` 引入，而非只有`less`
-4. 支持按需加载
+1. 导出类型声明文件；
+2. 导出 `umd`/`Commonjs module`/`ES module` 等 3 种形式供使用者引入；
+3. 支持样式文件 `css` 引入，而非只有`less`，减少业务方接入成本；
+4. 支持按需加载。
 
 ### 导出类型声明文件
 
@@ -766,7 +968,7 @@ exports.onCreateWebpackConfig = args => {
 }
 ```
 
-执行`yarn build:types`，可以发现根目录下已经生成了`lib`文件夹（`tsconfig.json`中定义的`declarationDir`字段），目录结构与`components`文件夹保持一致，如下：
+执行`yarn build:types`，可以发现根目录下已经生成了`lib`文件夹（`tsconfig.json`中定义的`declarationDir`字段）以及`esm`文件夹（拷贝而来），目录结构与`components`文件夹保持一致，如下：
 
 **lib**
 
@@ -788,7 +990,7 @@ exports.onCreateWebpackConfig = args => {
 
 ### 导出 Commonjs 模块
 
-其实完全可以使用`babel`或`tsc`命令行工具进行代码编译处理（实际上很多工具库就是这样做的），但考虑到还要**处理样式及其按需加载**，我们借助 `gulp` 来串起这个流程。
+其实完全可以使用`babel`或`tsc`命令行工具进行代码编译处理（实际上很多工具库就是这样做的），但考虑到还要**样式处理及其按需加载**，我们借助 `gulp` 来串起这个流程。
 
 #### babel 配置
 
@@ -847,7 +1049,7 @@ not op_mini all
 
 对于组件库（代码量可能很大），个人建议将`polyfill`的选择权交还给使用者，在宿主环境进行`polyfill`。若使用者具有兼容性要求，自然会使用`@babel/preset-env + core-js + .browserslistrc`进行全局`polyfill`，这套组合拳引入了最低目标浏览器不支持`API`的全部 `polyfill`。
 
-> 业务开发中，将`@babel/preset-env`的`useBuiltIns`选项值设置为 `usage`，同时把`node_modules`从`babel-loader`中`exclude`掉的同学可能想要这个特性：["useBuiltIns: usage" for node_modules without transpiling #9419](https://github.com/babel/babel/issues/9419)，在未支持该`issue`提到的内容之前，还是乖乖地将`useBuiltIns`设置为`entry`，或者不要把`node_modules`从`babel-loader`中`exclude`。
+> 顺带一提，业务开发中，若将`@babel/preset-env`的`useBuiltIns`选项值设置为 `usage`，同时把`node_modules`从`babel-loader`中`exclude`，会导致`babel` 无法检测到`nodes_modules`中所需要的`polyfill`。["useBuiltIns: usage" for node_modules without transpiling #9419](https://github.com/babel/babel/issues/9419)，在未支持该`issue`提到的内容之前，请将`useBuiltIns`设置为`entry`，或者不要把`node_modules`从`babel-loader`中`exclude`。
 
 所以组件库不用画蛇添足，引入多余的`polyfill`，写好文档说明，比什么都重要（就像[zent](https://github.com/youzan/zent#required-polyfills)和[antd](https://ant.design/docs/react/getting-started-cn#%E5%85%BC%E5%AE%B9%E6%80%A7)这样）。
 
@@ -1060,7 +1262,7 @@ const build = gulp.parallel(buildScripts);
 // ...
 ```
 
-执行`yarn build`，可以发现生成了`lib`/`esm`三个文件夹，观察`esm`目录，结构同`lib`一致，js 文件都是以`ES module`模块形式导入导出。
+执行`yarn build`，可以发现生成了`lib`/`esm`两个文件夹，观察`esm`目录，结构同`lib`一致，js 文件都是以`ES module`模块形式导入导出。
 
 **esm/alert/alert.js**
 
@@ -1119,18 +1321,14 @@ const build = gulp.parallel(buildScripts, copyLess);
 └── index.js
 ```
 
-可能有些同学已经发现问题：若使用者没有使用`less`预处理器，使用的是`sass`方案甚至原生`css`方案，那现有方案就搞不定了。经分析，有以下 3 种预选方案：
+可能有些同学已经发现问题：若使用者没有使用`less`预处理器，使用的是`sass`方案甚至原生`css`方案，那现有方案就搞不定了。经分析，有以下 4 种预选方案：
 
-1. 告知用户增加`less-loader`；
-2. 打包出一份完整的 `css` 文件，进行**全量**引入；
-3. 单独提供一份`style/css.js`文件，引入的是组件 `css`样式文件依赖，而非 `less` 依赖，组件库底层抹平差异；
-4. 使用`css in js`方案。
+1. 告知业务方增加`less-loader`。会导致业务方使用成本增加；
+2. 打包出一份完整的 `css` 文件，进行**全量**引入。无法进行按需引入；
+3. `css in js`方案；
+4. 提供一份`style/css.js`文件，引入组件 `css`样式依赖，而非 `less` 依赖，组件库底层抹平差异。
 
-方案 1 会导致业务方使用成本增加。
-
-方案 2 无法进行按需引入。
-
-方案 4 需要详细聊聊。
+重点看一看方案 3 以及方案 4。
 
 `css in js`除了赋予样式编写更多的可能性之外，在编写第三方组件库时更是利器。
 
@@ -1148,29 +1346,29 @@ const build = gulp.parallel(buildScripts, copyLess);
 
 1. 样式无法单独缓存；
 2. styled-components 自身体积较大；
-3. 复写组件样式需要使用属性选择器或者使用`styled-components`，麻烦了点。
+3. 复写组件样式需要使用属性选择器或者使用`styled-components`自带方法。
 
 需要看取舍了，偷偷说一句`styled-components`做主题定制也极其方便。
 
-方案 3 是`antd`使用的这种方案。
+方案 4 是`antd`使用的这种方案。
 
 在搭建组件库的过程中，有一个问题困扰了我很久：为什么需要`alert/style/index.js`引入`less`文件或`alert/style/css.js`引入`css`文件？
 
 答案是**管理样式依赖**。
 
-因为我们的组件是没有引入样式文件的，需要用户去手动引入。
+因为我们的组件是没有引入样式文件的，需要使用者去手动引入。
 
-假设存在以下场景：引入`<Button />`，`<Button />`依赖了`<Icon />`，使用者需要手动去引入调用的组件的样式（`<Button />`）及其依赖的组件样式（`<Icon />`），遇到复杂组件极其麻烦，所以组件库开发者可以提供一份这样的`js`文件，使用者手动引入这个`js`文件，就能引入对应组件及其依赖组件的样式。
+假设存在以下场景：使用者引入`<Button />`，`<Button />`依赖了`<Icon />`，则需要手动去引入调用组件的样式（`<Button />`）及其依赖的组件样式（`<Icon />`），遇到复杂组件极其麻烦，所以组件库开发者可以提供一份这样的`js`文件，使用者手动引入这个`js`文件，就能引入对应组件及其依赖组件的样式。
 
 那么问题又来了，为什么组件不能自己去`import './index.less'`呢？
 
-可以，不过业务方要配置`less-loader`，什么，业务方不想配，要你`import './index.css'`？🙃
+可以，但业务方需要配置`less-loader`，什么，业务方不想配，要你`import './index.css'`？🙃
 
-可以，业务方爽了，组件开发方不爽。
+可以，业务方爽了，组件开发者不开心。
 
 所以我们要找一个大家都爽的方案：
 
-1. 开发方能够开心的使用预处理器；
+1. 组件开发者能够开心的使用预处理器；
 2. 业务方不需要额外的使用成本。
 
 答案就是~~css in js~~单独提供一份`style/css.js`文件，引入的是组件 `css`样式文件依赖，而非 `less` 依赖，组件库底层抹平差异。
@@ -1522,8 +1720,6 @@ yarn test
 5. 发布至 npm
 6. 打 tag 并推送至 git
 
-如果你不想代码，很好，用[np](https://www.npmjs.com/package/np)（如果我一开始就知道这个工具，我也不会去写代码，我真傻，真的）。
-
 **package.json**
 
 ```diff
@@ -1532,7 +1728,8 @@ yarn test
 },
 ```
 
-直接甩代码吧，实在不复杂。
+<details>
+<summary>展开查看代码</summary>
 
 ```ts
 /* eslint-disable  import/no-extraneous-dependencies,@typescript-eslint/camelcase, no-console */
@@ -1584,7 +1781,7 @@ const timeLog = (logInfo: string, type: 'start' | 'end') => {
 };
 
 /**
- * 获取下一次版本号
+ * 询问获取下一次版本号
  */
 async function prompt(): Promise<string> {
   const nextVersions = getNextVersions();
@@ -1614,6 +1811,9 @@ async function updateVersion(nextVersion: string) {
   timeLog('修改package.json版本号', 'end');
 }
 
+/**
+ * 生成CHANGELOG
+ */
 async function generateChangelog() {
   timeLog('生成CHANGELOG.md', 'start');
   await run(' npx conventional-changelog -p angular -i CHANGELOG.md -s -r 0');
@@ -1684,44 +1884,38 @@ async function main() {
 main();
 ```
 
+</details>
+
+如果你对这一节不感兴趣，也可以直接使用[np](https://www.npmjs.com/package/np)进行发布，需要自定义配置一些钩子。
+
 ## 初始化组件
 
-每次初始化一个组件就要新建许多文件以及文件夹，复制粘贴也可，不过还可以使用更高级一点的偷懒方式。
+每次初始化一个组件就要新建许多文件（夹），复制粘贴也可，不过还可以使用更高级一点的偷懒方式。
 
-常规思路，新建一个组件模板文件夹，里面包含一个组件所需要的所有文件，同时写好文件内容。
+思路如下：
 
-至于一些动态内容，譬如组件中英文名称，选一个你喜欢的模板语言（如 handlebars），用其方式留空`{{componentName}}`。
+1. 创建组件模板，预留动态信息插槽（组件名称，组件描述等等）；
+2. 基于`inquirer.js`询问动态信息；
+3. 将信息插入模板，渲染至`components`文件夹下；
+4. 向 components/index.ts 插入导出语句。
+
+我们只需要配置好模板以及问题，至于询问以及渲染就交给[plop.js](https://plopjs.com/)吧。
+
+```bash
+yarn add plop --dev
+```
+
+新增脚本命令。
 
 **package.json**
 
 ```diff
 "scripts": {
-+ "new": "ts-node ./scripts/new.ts"
-},
-```
-
-接下来我们在`new.ts`中编写相关步骤，无非是：
-
-1. 基于`inquirer.js`询问一些基本组件信息
-2. 结合信息，渲染模板（填空）至组件文件夹
-3. 向 components/index.ts 插入导出语句
-
-你以为我会写`new.ts`吗，不，我不会（虽然我真写过）。
-
-主要是使用[metalsmith](https://github.com/segmentio/metalsmith)进行数据与模板结合，写脚手架的同学可能比较熟悉。
-
-自从我知道了[plop.js](https://plopjs.com/)这个库，那么又可以偷懒了（为什么之前没有人告诉我有这么多好用的工具？？？）
-
-```diff
-"scripts": {
-- "new": "ts-node ./scripts/new.ts",
 + "new": "plop --plopfile ./scripts/plopfile.ts",
 },
 ```
 
-于是上述流程可以大大简化，不需要写代码去询问，不需要手动渲染模板，我们要做的就是写好模板，并且配置好问题以及渲染目的地。
-
-详情可见：
+新增配置文件以及组件模板，详情可见：
 
 - 配置文件：[scripts/plopfile.ts](https://github.com/worldzhao/react-ui-library-tutorial/blob/master/scripts/plopfile.ts)
 - 模板文件：[templates/component](https://github.com/worldzhao/react-ui-library-tutorial/tree/master/templates/component)
