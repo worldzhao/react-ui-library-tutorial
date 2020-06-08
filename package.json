@@ -6,12 +6,6 @@
   "typings": "lib/index.d.ts",
   "main": "lib/index.js",
   "module": "esm/index.js",
-  "sideEffects": [
-    "dist/*",
-    "esm/**/style/*",
-    "lib/**/style/*",
-    "*.less"
-  ],
   "authors": {
     "name": "worldzhao",
     "email": "1007326924@qq.com"
@@ -40,7 +34,6 @@
     "url": "git+https://github.com/worldzhao/react-ui-library-tutorial.git"
   },
   "keywords": [],
-  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/worldzhao/react-ui-library-tutorial/issues"
