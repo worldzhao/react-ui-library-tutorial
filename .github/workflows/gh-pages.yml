@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-      - run: npm install
-      - run: npm run build:site
+      - run: yarn
+      - run: yarn build:site
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
