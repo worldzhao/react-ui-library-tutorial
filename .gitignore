@@ -20,6 +20,12 @@
 /doc-site
 /types
 
+# umi
+.umi
+.umi-production
+.env.local
+
+
 # misc
 .DS_Store
 .env.local

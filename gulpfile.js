@@ -11,12 +11,8 @@ const paths = {
     esm: 'esm',
     dist: 'dist',
   },
-  styles: 'components/**/*.less',
-  scripts: [
-    'components/**/*.{ts,tsx}',
-    '!components/**/demo/*.{ts,tsx}',
-    '!components/**/__tests__/*.{ts,tsx}',
-  ],
+  styles: 'src/**/*.less',
+  scripts: ['src/**/*.{ts,tsx}', '!src/**/demo/*.{ts,tsx}', '!src/**/__tests__/*.{ts,tsx}'],
 };
 
 /**
@@ -83,10 +79,7 @@ const buildScripts = gulp.series(compileCJS, compileESM);
  * 拷贝less文件
  */
 function copyLess() {
-  return gulp
-    .src(paths.styles)
-    .pipe(gulp.dest(paths.dest.lib))
-    .pipe(gulp.dest(paths.dest.esm));
+  return gulp.src(paths.styles).pipe(gulp.dest(paths.dest.lib)).pipe(gulp.dest(paths.dest.esm));
 }
 
 /**

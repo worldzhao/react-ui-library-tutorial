@@ -1,4 +1,3 @@
+template/
 *.js
-doc-comps
-components/**/demo
-template
+**/demo

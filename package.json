@@ -11,23 +11,21 @@
     "email": "1007326924@qq.com"
   },
   "scripts": {
-    "dev": "docz dev",
+    "dev": "dumi dev",
     "start": "npm run dev",
-    "build:doc": "rimraf doc-site && docz build",
-    "preview:doc": "docz serve",
+    "build:doc": "rimraf doc-site && dumi build",
     "clean": "rimraf lib esm dist",
     "build:types": "tsc -p tsconfig.build.json && cpr lib esm",
     "build": "npm run clean && npm run build:types && gulp",
     "publish:doc": "now --prod",
     "now-build": "npm run build:doc",
-    "release": "ts-node ./scripts/release.ts",
     "commit": "git-cz",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "test:update": "jest --updateSnapshot",
     "new": "plop --plopfile ./scripts/plopfile.ts",
-    "postnew": "prettier --write components/**/*{ts,tsx} --loglevel silent"
+    "postnew": "prettier --write src/**/*{ts,tsx} --loglevel silent"
   },
   "repository": {
     "type": "git",
@@ -37,6 +35,29 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/worldzhao/react-ui-library-tutorial/issues"
+  },
+  "lint-staged": {
+    "src/**/*.ts?(x)": [
+      "prettier --write",
+      "eslint --fix",
+      "jest --bail --findRelatedTests",
+      "git add"
+    ],
+    "src/**/*.less": [
+      "stylelint --syntax less --fix",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   },
   "peerDependencies": {
     "react": ">=16.8.0",
@@ -55,19 +76,17 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "@types/jest": "^24.0.25",
-    "@types/styled-components": "4.1.8",
+    "@types/react": "^16.8.0",
+    "@types/react-dom": "^16.8.0",
     "@types/testing-library__react": "^9.1.2",
-    "@types/vfile-message": "^2.0.0",
+    "@typescript-eslint/parser": "^1.9.0",
     "@umijs/fabric": "^1.2.12",
-    "chalk": "^3.0.0",
+    "babel-plugin-import": "^1.13.3",
     "commitizen": "^4.0.3",
     "cpr": "^3.0.1",
     "cz-conventional-changelog": "^3.0.2",
     "doctoc": "^1.4.0",
-    "docz": "^2.3.2-alpha.0",
-    "gatsby-plugin-import": "^2.1.5",
-    "gatsby-plugin-less": "^3.0.17",
-    "gatsby-plugin-styled-components": "^3.3.0",
+    "dumi": "^1.0.13",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
     "gulp-babel": "^8.0.0",
@@ -75,56 +94,27 @@
     "gulp-less": "^4.0.1",
     "husky": "^3.1.0",
     "identity-obj-proxy": "^3.0.0",
-    "inquirer": "^7.0.4",
     "jest": "^24.9.0",
     "less": "^3.10.3",
     "lint-staged": "^9.5.0",
     "now": "^19.0.1",
     "plop": "^2.6.0",
     "prettier": "^1.19.1",
-    "prismjs": "^1.17.1",
-    "raw-loader": "^4.0.0",
-    "react": "^16.12.0",
-    "react-copy-to-clipboard": "^5.0.2",
-    "react-dom": "^16.12.0",
-    "react-feather": "^2.0.8",
-    "react-simple-code-editor": "^0.10.0",
-    "react-tooltip": "^4.2.5",
-    "react-use": "^13.12.2",
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
     "rimraf": "^3.0.0",
-    "semver": "^7.3.2",
     "snapshot-diff": "^0.6.1",
-    "styled-components": "^5.1.0",
     "through2": "^3.0.1",
     "ts-jest": "^24.2.0",
     "ts-node": "^8.10.1",
     "typescript": "^3.7.3"
   },
-  "lint-staged": {
-    "components/**/*.ts?(x)": [
-      "prettier --write",
-      "eslint --fix",
-      "jest --bail --findRelatedTests",
-      "git add"
-    ],
-    "components/**/*.less": [
-      "stylelint --syntax less --fix",
-      "git add"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "lint-staged"
-    }
-  },
-  "config": {
-    "commitizen": {
-      "path": "cz-conventional-changelog"
-    }
-  },
   "dependencies": {
     "@babel/runtime": "^7.7.7",
     "prop-types": "^15.7.2"
+  },
+  "resolutions": {
+    "@types/react": "16.14.10",
+    "@types/react-dom": "16.9.13"
   }
 }

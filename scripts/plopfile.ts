@@ -2,7 +2,7 @@
 import { NodePlopAPI } from 'plop';
 import path from 'path';
 
-export default function(plop: NodePlopAPI) {
+export default function (plop: NodePlopAPI) {
   plop.setGenerator('component', {
     description: '创建一个新组件',
     prompts: [
@@ -33,7 +33,7 @@ export default function(plop: NodePlopAPI) {
       },
       {
         type: 'add',
-        path: path.resolve(__dirname, '../components/{{kebabCase name}}/index.mdx'),
+        path: path.resolve(__dirname, '../components/{{kebabCase name}}/index.md'),
         templateFile: path.resolve(__dirname, '../templates/component/doc.hbs'),
       },
       {
