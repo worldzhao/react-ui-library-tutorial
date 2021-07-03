@@ -15,6 +15,8 @@ export default defineConfig({
   outputPath: 'doc-site',
   exportStatic: {},
   dynamicImport: {},
+  webpack5: {},
+  mfsu: {},
   base,
   publicPath,
 });
