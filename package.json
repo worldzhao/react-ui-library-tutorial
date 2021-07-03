@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "A React UI Library.",
   "homepage": "https://github.com/worldzhao/react-ui-library-tutorial#readme",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "typings": "lib/index.d.ts",
   "main": "lib/index.js",
   "module": "esm/index.js",
@@ -10,6 +14,10 @@
     "name": "worldzhao",
     "email": "1007326924@qq.com"
   },
+  "files": [
+    "lib",
+    "esm"
+  ],
   "scripts": {
     "dev": "dumi dev",
     "start": "npm run dev",
@@ -19,6 +27,8 @@
     "clean": "rimraf lib esm dist",
     "build:types": "tsc -p tsconfig.build.json && cpr lib esm",
     "build": "npm run clean && npm run build:types && gulp",
+    "prepublishOnly": "npm run build",
+    "release": "np --no-cleanup --no-tests --any-branch",
     "commit": "git-cz",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -99,6 +109,7 @@
     "jest": "^24.9.0",
     "less": "^3.10.3",
     "lint-staged": "^9.5.0",
+    "np": "^7.5.0",
     "plop": "^2.6.0",
     "prettier": "^1.19.1",
     "react": "^16.8.0",
