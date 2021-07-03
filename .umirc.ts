@@ -4,7 +4,7 @@ import { defineConfig } from 'dumi';
 let base = '/react-ui-library-tutorial';
 let publicPath = '/react-ui-library-tutorial/';
 
-if (process.env.DOC_BUILD_ENV === 'local') {
+if (process.env.SITE_BUILD_ENV === 'PREVIEW') {
   base = undefined;
   publicPath = undefined;
 }

@@ -11,7 +11,7 @@ nav:
 **使用 npm 或 yarn 安装**
 
 ```shell
-$ npm install @zzzzw/happy-ui --save
+npm install @zzzzw/happy-ui
 ```
 
 ```shell

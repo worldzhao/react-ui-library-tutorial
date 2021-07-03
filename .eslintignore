@@ -1,3 +1,4 @@
 template/
 *.js
-**/demo
+**/demo/
+**/__tests__/

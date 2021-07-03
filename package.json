@@ -22,7 +22,7 @@
     "dev": "dumi dev",
     "start": "npm run dev",
     "build:site": "rimraf doc-site && dumi build",
-    "preview:site": "cross-env DOC_BUILD_ENV=local npm run build:site && serve doc-site",
+    "preview:site": "cross-env SITE_BUILD_ENV=PREVIEW npm run build:site && serve doc-site",
     "deploy:site": "npm run build:site && gh-pages -d doc-site",
     "clean": "rimraf lib esm dist",
     "build:types": "tsc -p tsconfig.build.json && cpr lib esm",
