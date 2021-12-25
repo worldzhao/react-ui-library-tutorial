@@ -1,10 +1,10 @@
 module.exports = {
   verbose: true,
-  roots: ['<rootDir>/components'],
+  roots: ['<rootDir>/src'],
   moduleNameMapper: {
     '\\.(css|less|scss)$': 'identity-obj-proxy',
-    '^components$': '<rootDir>/components/index.tsx',
-    '^components(.*)$': '<rootDir>/components/$1',
+    '^src$': '<rootDir>/src/index.tsx',
+    '^src(.*)$': '<rootDir>/src/$1',
   },
   testRegex: '(/test/.*|\\.(test|spec))\\.(ts|tsx|js)$',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
