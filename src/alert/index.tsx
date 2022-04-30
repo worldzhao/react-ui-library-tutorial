@@ -1,5 +1,5 @@
-import React from 'react';
 import t from 'prop-types';
+import React from 'react';
 
 export interface AlertProps {
   /**
