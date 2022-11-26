@@ -70,8 +70,12 @@
     }
   },
   "peerDependencies": {
-    "react": ">=16.8.0",
-    "react-dom": ">=16.8.0"
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7",
+    "prop-types": "^15.7.2"
   },
   "dependencies": {
     "@babel/runtime": "^7",
