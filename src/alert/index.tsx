@@ -1,4 +1,3 @@
-import t from 'prop-types';
 import React from 'react';
 
 export interface AlertProps {
@@ -31,9 +30,5 @@ const Alert: React.FC<AlertProps> = ({ children, kind = 'info', ...rest }) => (
     {children}
   </div>
 );
-
-Alert.propTypes = {
-  kind: t.oneOf(['info', 'positive', 'negative', 'warning']),
-};
 
 export default Alert;
