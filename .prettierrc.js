@@ -4,6 +4,10 @@ module.exports = {
   ...fabric.prettier,
   plugins: [
     require.resolve('prettier-plugin-packagejson'),
-    require.resolve('prettier-plugin-organize-imports'),
+    require.resolve('@trivago/prettier-plugin-sort-imports'),
   ],
+  importOrder: ['^react', '<THIRD_PARTY_MODULES>', '^@.*', '^./(.*)', '^../(.*)'],
+  importOrderSeparation: true,
+  importOrderSortSpecifiers: true,
+  importOrderCaseInsensitive: true,
 };

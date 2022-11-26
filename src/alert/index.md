@@ -16,6 +16,4 @@ group:
 
 ### 基本用法
 
-<code src="./demo/basic.tsx"></code>
-
-<API src="./index.tsx"></API>
+<code src="./demo/basic.tsx" iframe></code>
