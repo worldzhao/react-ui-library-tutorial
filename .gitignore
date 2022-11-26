@@ -19,11 +19,13 @@
 /doc-site
 /types
 
-# umi
+# dumi
+.dumi/tmp
+.dumi/tmp-test
+.dumi/tmp-production
 .umi
 .umi-production
 .env.local
-
 
 # misc
 .DS_Store
