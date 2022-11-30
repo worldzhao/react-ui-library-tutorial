@@ -6,7 +6,7 @@ let publicPath: string | undefined;
 
 // Github Pages 部署时需要更换为自己的仓库名
 if (process.env.NODE_ENV === 'production' && process.env.PREVIEW !== '1') {
-  base = '/react-ui-library-tutorial';
+  base = '/react-ui-library-tutorial/';
   publicPath = '/react-ui-library-tutorial/';
 }
 
