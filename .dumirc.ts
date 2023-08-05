@@ -27,7 +27,7 @@ export default defineConfig({
       {
         libraryName: '@zzzzw/happy-ui',
         libraryDirectory: '',
-        customStyleName: (name) => path.resolve(__dirname, `src/${name}/style/index.ts`),
+        customStyleName: (name: string) => path.resolve(__dirname, `src/${name}/style/index.ts`),
       },
     ],
   ],

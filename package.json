@@ -27,6 +27,7 @@
     "commit": "cz",
     "deploy:site": "npm run build:site && gh-pages -d doc-site",
     "dev": "npm start",
+    "preinstall": "npx only-allow pnpm",
     "new": "plop --plopfile ./scripts/plopfile.ts",
     "postnew": "prettier --write src/**/*{ts,tsx} --loglevel silent",
     "prepare": "husky install && dumi setup",
@@ -62,8 +63,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.7.7",
-    "@babel/plugin-proposal-class-properties": "^7.7.4",
-    "@babel/plugin-proposal-object-rest-spread": "^7.7.7",
     "@babel/plugin-transform-runtime": "^7.7.6",
     "@babel/preset-env": "^7.7.7",
     "@babel/preset-react": "^7.7.4",
@@ -86,7 +85,7 @@
     "cross-env": "^7.0.3",
     "cz-conventional-changelog": "^3.3.0",
     "doctoc": "^1.4.0",
-    "dumi": "^2.0.6",
+    "dumi": "^2.2.4",
     "eslint": "^7",
     "gh-pages": "^3.2.3",
     "gulp": "^4.0.2",
@@ -101,6 +100,7 @@
     "lint-staged": "^13",
     "np": "^7.5.0",
     "plop": "^2",
+    "pnpm": "^8.6.5",
     "prettier": "^2.8.0",
     "prettier-plugin-packagejson": "^2.3.0",
     "react": "^16.8.0",
@@ -116,6 +116,7 @@
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
   },
+  "packageManager": "pnpm@8.6.5",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
